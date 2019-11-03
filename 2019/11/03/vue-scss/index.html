@@ -3,18 +3,22 @@
 <head>
   <meta charset="utf-8">
   
-  <title>vue-scss | 帅祥的Blog</title>
+  <title>vue文件使用lang=&#34;scss&#34;报错问题 | 帅祥的Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
     <meta name="keywords" content="FuXiang,FuXiang's Blog" />
   
-  <meta property="og:type" content="article">
-<meta property="og:title" content="vue-scss">
+  <meta name="description" content="vue文件使用lang=”scss”报错问题新建项目.vue文件中使用scss写样式。按照网上教程安装集中依赖模块并且配置后出现以下报错： 这是因为我们安装的sass-loader版本过高，只要我们安装7.3.1版本的sass-loader问题就解决了。 具体方法为： 输入以下命令：123npm install sass-loader@7.3.1 --save-dev &#x2F;&#x2F;这里安装的是7.3.1版">
+<meta property="og:type" content="article">
+<meta property="og:title" content="vue文件使用lang=&quot;scss&quot;报错问题">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;03&#x2F;vue-scss&#x2F;index.html">
 <meta property="og:site_name" content="帅祥的Blog">
+<meta property="og:description" content="vue文件使用lang=”scss”报错问题新建项目.vue文件中使用scss写样式。按照网上教程安装集中依赖模块并且配置后出现以下报错： 这是因为我们安装的sass-loader版本过高，只要我们安装7.3.1版本的sass-loader问题就解决了。 具体方法为： 输入以下命令：123npm install sass-loader@7.3.1 --save-dev &#x2F;&#x2F;这里安装的是7.3.1版">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-03T08:47:30.447Z">
+<meta property="og:image" content="https:&#x2F;&#x2F;github.com&#x2F;fu-x&#x2F;fu-x.github.io&#x2F;blob&#x2F;master&#x2F;images&#x2F;vue-scss&#x2F;1.png">
+<meta property="og:updated_time" content="2019-11-03T09:14:51.686Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https:&#x2F;&#x2F;github.com&#x2F;fu-x&#x2F;fu-x.github.io&#x2F;blob&#x2F;master&#x2F;images&#x2F;vue-scss&#x2F;1.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -112,7 +116,7 @@
         
   
     <h1 class="post-title" itemprop="name">
-      vue-scss
+      vue文件使用lang=&#34;scss&#34;报错问题
     </h1>
     <div class="post-title-bar">
       <ul>
@@ -134,11 +138,18 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            
+            <h1 id="vue文件使用lang-”scss”报错问题"><a href="#vue文件使用lang-”scss”报错问题" class="headerlink" title="vue文件使用lang=”scss”报错问题"></a>vue文件使用lang=”scss”报错问题</h1><p>新建项目.vue文件中使用scss写样式。按照网上教程安装集中依赖模块并且配置后出现以下报错：<br><img src="https://github.com/fu-x/fu-x.github.io/blob/master/images/vue-scss/1.png" alt="scss报错"></p>
+<p>这是因为我们安装的sass-loader版本过高，只要我们安装7.3.1版本的sass-loader问题就解决了。</p>
+<h3 id="具体方法为："><a href="#具体方法为：" class="headerlink" title="具体方法为："></a>具体方法为：</h3><ol>
+<li>输入以下命令：<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install sass-loader@7.3.1 --save-dev //这里安装的是7.3.1版本的sass-loader</span><br><span class="line">npm install node-sass --save</span><br><span class="line">npm install style-loader --save</span><br></pre></td></tr></table></figure></li>
+<li>在配置文件module下rules下添加如下代码（如果项目使用vue-cli脚手架生成，则忽略此步骤）:<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  test: /\.scss$/,</span><br><span class="line">  loaders: [&apos;style-loader&apos;, &apos;css-loader&apos;, &apos;sass-loader&apos;]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+这样我们的代码就不会报错了</li>
+</ol>
+
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年11月03日 16:47</p>
-        <p>原始链接： <a class="post-url" href="/2019/11/03/vue-scss/" title="vue-scss">http://yoursite.com/2019/11/03/vue-scss/</a></p>
+        <p>最后更新： 2019年11月03日 17:14</p>
+        <p>原始链接： <a class="post-url" href="/2019/11/03/vue-scss/" title="vue文件使用lang=&#34;scss&#34;报错问题">http://yoursite.com/2019/11/03/vue-scss/</a></p>
         <footer>
             <a href="http://yoursite.com">
                 <img src="/images/logo.png" alt="John Doe">
@@ -195,7 +206,7 @@
     <div class="post-share-list" id="share-list">
         <ul class="share-icons">
           <li>
-            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/11/03/vue-scss/&title=《vue-scss》 — 帅祥的Blog&pic=http://yoursite.comimages/logo.png" data-title="微博">
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/11/03/vue-scss/&title=《vue文件使用lang="scss"报错问题》 — 帅祥的Blog&pic=http://yoursite.comimages/logo.png" data-title="微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
@@ -205,7 +216,7 @@
             </a>
           </li>
           <li>
-            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/11/03/vue-scss/&title=《vue-scss》 — 帅祥的Blog&source=" data-title="QQ">
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/11/03/vue-scss/&title=《vue文件使用lang="scss"报错问题》 — 帅祥的Blog&source=" data-title="QQ">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -215,7 +226,7 @@
             </a>
           </li>
           <li>
-            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《vue-scss》 — 帅祥的Blog&url=http://yoursite.com/2019/11/03/vue-scss/&via=http://yoursite.com" data-title="Twitter">
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《vue文件使用lang="scss"报错问题》 — 帅祥的Blog&url=http://yoursite.com/2019/11/03/vue-scss/&via=http://yoursite.com" data-title="Twitter">
               <i class="fa fa-twitter"></i>
             </a>
           </li>
@@ -246,6 +257,12 @@
 </article>
 
 
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#vue文件使用lang-”scss”报错问题"><span class="post-toc-text">vue文件使用lang=”scss”报错问题</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#具体方法为："><span class="post-toc-text">具体方法为：</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
 
 <nav id="article-nav">
   
