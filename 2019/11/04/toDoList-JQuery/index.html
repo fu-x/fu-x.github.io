@@ -16,7 +16,7 @@
 <meta property="og:description" content="基于jquery的tuDoList———最简单的代办事件列表toDoList分析： 做到刷新页面不会丢失数据，因此我们的数据需要保存至本地localstorage里； 每次修改数据都要先从本地拿到数据，再把最新的数据渲染到页面上； 修改后再把最新的数据保存至localstorage，这样保证本地存储的是最新的数据； 存储的数据格式：var todolist = [{title: ‘晚上看电影。’,">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;04&#x2F;toDoList-JQuery&#x2F;todolist.png">
-<meta property="og:updated_time" content="2019-11-04T12:43:58.517Z">
+<meta property="og:updated_time" content="2019-11-04T12:53:34.462Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;04&#x2F;toDoList-JQuery&#x2F;todolist.png">
   
@@ -138,7 +138,7 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h1 id="基于jquery的tuDoList———最简单的代办事件列表"><a href="#基于jquery的tuDoList———最简单的代办事件列表" class="headerlink" title="基于jquery的tuDoList———最简单的代办事件列表"></a>基于jquery的tuDoList———最简单的代办事件列表</h1><h2 id="toDoList分析："><a href="#toDoList分析：" class="headerlink" title="toDoList分析："></a>toDoList分析：</h2><ol>
+            <h1 id="基于jquery的tuDoList———最简单的代办事件列表"><a href="#基于jquery的tuDoList———最简单的代办事件列表" class="headerlink" title="基于jquery的tuDoList———最简单的代办事件列表"></a>基于jquery的tuDoList———最简单的代办事件列表</h1><h3 id="toDoList分析："><a href="#toDoList分析：" class="headerlink" title="toDoList分析："></a>toDoList分析：</h3><ol>
 <li>做到刷新页面不会丢失数据，因此我们的数据需要保存至本地localstorage里；</li>
 <li>每次修改数据都要先从本地拿到数据，再把最新的数据渲染到页面上；</li>
 <li>修改后再把最新的数据保存至localstorage，这样保证本地存储的是最新的数据；</li>
@@ -146,9 +146,10 @@
 <li>注意一：本地存储localStorage里面只能存储字符串格式，因此需要把对象转换为字符串JSON。stringfy(data)。</li>
 <li>注意二：获取本地存储数据，需要把里面的字符串转换为对象格式JSON.parse()我们才能使用里面的数据。</li>
 </ol>
+<p>github网址: <a href="https://github.com/fu-x/ToDoList-JQuery" target="_blank" rel="noopener">toDoList-JQuery</a></p>
 <img src="/2019/11/04/toDoList-JQuery/todolist.png" class="" title="todolist-JQuery">
 
-<h2 id="主要函数："><a href="#主要函数：" class="headerlink" title="主要函数："></a>主要函数：</h2><ol>
+<h3 id="主要函数："><a href="#主要函数：" class="headerlink" title="主要函数："></a>主要函数：</h3><ol>
 <li>getData():从本地获取数据<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function getData() &#123; //从本地获取数据</span><br><span class="line">    var data = localStorage.getItem(&apos;todolist&apos;);</span><br><span class="line">    if(data!==null)</span><br><span class="line">        return JSON.parse(data);//返回JSON格式的数据</span><br><span class="line">    else</span><br><span class="line">        return [];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li>saveData(data)：保存数据至本地中的todolist<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function saveData(data) &#123; //保存数据至本地中的todolist</span><br><span class="line">    localStorage.setItem(&apos;todolist&apos;,JSON.stringify(data));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li>load():加载最新的数据渲染到html页面上(这个函数需要在页面加载完成后最先调用一次，把最新的数据加载出来)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function load() &#123; //加载数据函数</span><br><span class="line">    var data = getData();  //通过getData函数获取数据</span><br><span class="line">    $(&apos;ol,ul&apos;).empty(); //清空列表</span><br><span class="line">    var num1=0;</span><br><span class="line">    var num2=0;</span><br><span class="line">    $(data).each( function (i,ele) &#123; //循环data数据</span><br><span class="line">        if(ele.done) &#123;  //如果数据中的done为true，在ul已完成列表中添加一个li</span><br><span class="line">            $(&apos;ul&apos;).prepend(&quot;&lt;li&gt;&lt;input type=&apos;checkbox&apos; checked=&apos;checked&apos;&gt;&lt;p&gt;&quot; + ele.title + &quot;&lt;/p&gt;&lt;a href=&apos;javascrip:;&apos; id=&quot; + i + &quot;&gt;-&lt;/a&gt;&lt;/li&gt;&quot;);</span><br><span class="line">            num1++;</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123; //如果数据中的done为false，在ol正在进行列表中添加一个li</span><br><span class="line">            $(&apos;ol&apos;).prepend(&quot;&lt;li&gt;&lt;input type=&apos;checkbox&apos;&gt;&lt;p&gt;&quot;+ele.title+&quot;&lt;/p&gt;&lt;a href=&apos;javascrip:;&apos; id=&quot;+i+&quot;&gt;-&lt;/a&gt;&lt;/li&gt;&quot;);</span><br><span class="line">            num2++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
@@ -161,7 +162,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年11月04日 20:43</p>
+        <p>最后更新： 2019年11月04日 20:53</p>
         <p>原始链接： <a class="post-url" href="/2019/11/04/toDoList-JQuery/" title="toDoList-JQuery">http://yoursite.com/2019/11/04/toDoList-JQuery/</a></p>
         <footer>
             <a href="http://yoursite.com">
@@ -272,7 +273,7 @@
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基于jquery的tuDoList———最简单的代办事件列表"><span class="post-toc-text">基于jquery的tuDoList———最简单的代办事件列表</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#toDoList分析："><span class="post-toc-text">toDoList分析：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#主要函数："><span class="post-toc-text">主要函数：</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基于jquery的tuDoList———最简单的代办事件列表"><span class="post-toc-text">基于jquery的tuDoList———最简单的代办事件列表</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#toDoList分析："><span class="post-toc-text">toDoList分析：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#主要函数："><span class="post-toc-text">主要函数：</span></a></li></ol></li></ol></li></ol>
         </nav>
     </aside>
     
