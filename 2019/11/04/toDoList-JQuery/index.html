@@ -15,8 +15,10 @@
 <meta property="og:site_name" content="帅祥的Blog">
 <meta property="og:description" content="基于jquery的tudolist———最简单的代办事件列表toDolist分析： 做到刷新页面不会丢失数据，因此我们的数据需要保存至本地localstorage里； 每次修改数据都要先从本地拿到数据，再把最新的数据渲染到页面上； 修改后再把最新的数据保存至localstorage，这样保证本地存储的是最新的数据； 存储的数据格式：var todolist = [{title: ‘晚上看电影。’,">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-11-04T12:38:35.239Z">
+<meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;04&#x2F;toDoList-JQuery&#x2F;todolist.png">
+<meta property="og:updated_time" content="2019-11-04T12:40:44.480Z">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;04&#x2F;toDoList-JQuery&#x2F;todolist.png">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -144,6 +146,8 @@
 <li>注意一：本地存储localStorage里面只能存储字符串格式，因此需要把对象转换为字符串JSON。stringfy(data)。</li>
 <li>注意二：获取本地存储数据，需要把里面的字符串转换为对象格式JSON.parse()我们才能使用里面的数据。</li>
 </ol>
+<img src="/2019/11/04/toDoList-JQuery/todolist.png" class="" title="todolist-JQuery">
+
 <h2 id="主要函数："><a href="#主要函数：" class="headerlink" title="主要函数："></a>主要函数：</h2><ol>
 <li>getData():从本地获取数据<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function getData() &#123; //从本地获取数据</span><br><span class="line">    var data = localStorage.getItem(&apos;todolist&apos;);</span><br><span class="line">    if(data!==null)</span><br><span class="line">        return JSON.parse(data);//返回JSON格式的数据</span><br><span class="line">    else</span><br><span class="line">        return [];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li>saveData(data)：保存数据至本地中的todolist<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function saveData(data) &#123; //保存数据至本地中的todolist</span><br><span class="line">    localStorage.setItem(&apos;todolist&apos;,JSON.stringify(data));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
@@ -157,7 +161,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年11月04日 20:38</p>
+        <p>最后更新： 2019年11月04日 20:40</p>
         <p>原始链接： <a class="post-url" href="/2019/11/04/toDoList-JQuery/" title="toDoList-JQuery">http://yoursite.com/2019/11/04/toDoList-JQuery/</a></p>
         <footer>
             <a href="http://yoursite.com">
