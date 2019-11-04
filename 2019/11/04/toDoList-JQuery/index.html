@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>toDoList-JQuery | 帅祥的Blog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+    <meta name="keywords" content="FuXiang,FuXiang's Blog,fuxiang" />
+  
+  <meta name="description" content="基于jquery的tudolist———最简单的代办事件列表toDolist分析： 做到刷新页面不会丢失数据，因此我们的数据需要保存至本地localstorage里； 每次修改数据都要先从本地拿到数据，再把最新的数据渲染到页面上； 修改后再把最新的数据保存至localstorage，这样保证本地存储的是最新的数据； 存储的数据格式：var todolist = [{title: ‘晚上看电影。’,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="toDoList-JQuery">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;04&#x2F;toDoList-JQuery&#x2F;index.html">
+<meta property="og:site_name" content="帅祥的Blog">
+<meta property="og:description" content="基于jquery的tudolist———最简单的代办事件列表toDolist分析： 做到刷新页面不会丢失数据，因此我们的数据需要保存至本地localstorage里； 每次修改数据都要先从本地拿到数据，再把最新的数据渲染到页面上； 修改后再把最新的数据保存至localstorage，这样保证本地存储的是最新的数据； 存储的数据格式：var todolist = [{title: ‘晚上看电影。’,">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-11-04T12:38:35.239Z">
+<meta name="twitter:card" content="summary">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="/js/pace.min.js"></script>
+  
+
+  
+  
+
+</head>
+
+<body>
+  <div id="container">
+      <header id="header">
+    <div id="banner"></div>
+    <div id="header-outer">
+        <div id="header-menu" class="header-menu-pos animated">
+            <div class="header-menu-container">
+                <a href="/" class="left">
+                    <span class="site-title">FuXiang&#39;s Blog</span>
+                </a>
+                <nav id="header-menu-nav" class="right">
+                    
+                    <a  href="/">
+                        <i class="fa fa-home"></i>
+                        <span>Home</span>
+                    </a>
+                    
+                    <a  href="/archives">
+                        <i class="fa fa-archive"></i>
+                        <span>Archives</span>
+                    </a>
+                    
+                    <a  href="/about">
+                        <i class="fa fa-user"></i>
+                        <span>About</span>
+                    </a>
+                    
+                </nav>
+                <a class="mobile-header-menu-button">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+        <div id="header-row">
+            <div id="logo">
+                <a href="/">
+                    <img src="/images/logo.png" alt="logo">
+                </a>
+            </div>
+            <div class="header-info">
+                <div id="header-title">
+                    
+                    <h2>
+                        FuXiang&#39;s Blog
+                    </h2>
+                    
+                </div>
+                <div id="header-description">
+                    
+                    <h3>
+                        一个专注 WEB 开发的技术博客
+                    </h3>
+                    
+                </div>
+            </div>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a title="MinHow" target="_blank" href="//fu-x.github.io">
+                            <i class="fa fa-home fa-2x"></i></a>
+                    
+                        <a title="Github" target="_blank" href="//github.com/fu-x">
+                            <i class="fa fa-github fa-2x"></i></a>
+                    
+                        <a title="Weibo" target="_blank" href="//fu-x.github.io">
+                            <i class="fa fa-weibo fa-2x"></i></a>
+                    
+                        <a title="Twitter" target="_blank" href="//fu-x.github.io">
+                            <i class="fa fa-twitter fa-2x"></i></a>
+                    
+                </div>
+            </nav>
+        </div>
+    </div>
+</header>
+      <div class="outer">
+        <section id="main" class="body-wrap"><article id="post-toDoList-JQuery" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 class="post-title" itemprop="name">
+      toDoList-JQuery
+    </h1>
+    <div class="post-title-bar">
+      <ul>
+          
+        <li>
+          <i class="fa fa-calendar"></i>  2019-11-04
+        </li>
+        <li>
+          <i class="fa fa-eye"></i>
+          <span id="busuanzi_value_page_pv"></span>
+        </li>
+      </ul>
+    </div>
+  
+
+          
+      </header>
+    
+    <div class="article-entry post-content" itemprop="articleBody">
+      
+            
+            <h1 id="基于jquery的tudolist———最简单的代办事件列表"><a href="#基于jquery的tudolist———最简单的代办事件列表" class="headerlink" title="基于jquery的tudolist———最简单的代办事件列表"></a>基于jquery的tudolist———最简单的代办事件列表</h1><h2 id="toDolist分析："><a href="#toDolist分析：" class="headerlink" title="toDolist分析："></a>toDolist分析：</h2><ol>
+<li>做到刷新页面不会丢失数据，因此我们的数据需要保存至本地localstorage里；</li>
+<li>每次修改数据都要先从本地拿到数据，再把最新的数据渲染到页面上；</li>
+<li>修改后再把最新的数据保存至localstorage，这样保证本地存储的是最新的数据；</li>
+<li>存储的数据格式：var todolist = [{title: ‘晚上看电影。’, done:false}]。 其中title为事件内容，done表示事件是否完成。</li>
+<li>注意一：本地存储localStorage里面只能存储字符串格式，因此需要把对象转换为字符串JSON。stringfy(data)。</li>
+<li>注意二：获取本地存储数据，需要把里面的字符串转换为对象格式JSON.parse()我们才能使用里面的数据。</li>
+</ol>
+<h2 id="主要函数："><a href="#主要函数：" class="headerlink" title="主要函数："></a>主要函数：</h2><ol>
+<li>getData():从本地获取数据<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">function getData() &#123; //从本地获取数据</span><br><span class="line">    var data = localStorage.getItem(&apos;todolist&apos;);</span><br><span class="line">    if(data!==null)</span><br><span class="line">        return JSON.parse(data);//返回JSON格式的数据</span><br><span class="line">    else</span><br><span class="line">        return [];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>saveData(data)：保存数据至本地中的todolist<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function saveData(data) &#123; //保存数据至本地中的todolist</span><br><span class="line">    localStorage.setItem(&apos;todolist&apos;,JSON.stringify(data));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>load():加载最新的数据渲染到html页面上(这个函数需要在页面加载完成后最先调用一次，把最新的数据加载出来)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">function load() &#123; //加载数据函数</span><br><span class="line">    var data = getData();  //通过getData函数获取数据</span><br><span class="line">    $(&apos;ol,ul&apos;).empty(); //清空列表</span><br><span class="line">    var num1=0;</span><br><span class="line">    var num2=0;</span><br><span class="line">    $(data).each( function (i,ele) &#123; //循环data数据</span><br><span class="line">        if(ele.done) &#123;  //如果数据中的done为true，在ul已完成列表中添加一个li</span><br><span class="line">            $(&apos;ul&apos;).prepend(&quot;&lt;li&gt;&lt;input type=&apos;checkbox&apos; checked=&apos;checked&apos;&gt;&lt;p&gt;&quot; + ele.title + &quot;&lt;/p&gt;&lt;a href=&apos;javascrip:;&apos; id=&quot; + i + &quot;&gt;-&lt;/a&gt;&lt;/li&gt;&quot;);</span><br><span class="line">            num1++;</span><br><span class="line">        &#125;</span><br><span class="line">        else &#123; //如果数据中的done为false，在ol正在进行列表中添加一个li</span><br><span class="line">            $(&apos;ol&apos;).prepend(&quot;&lt;li&gt;&lt;input type=&apos;checkbox&apos;&gt;&lt;p&gt;&quot;+ele.title+&quot;&lt;/p&gt;&lt;a href=&apos;javascrip:;&apos; id=&quot;+i+&quot;&gt;-&lt;/a&gt;&lt;/li&gt;&quot;);</span><br><span class="line">            num2++;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>输入框回车按下事件，添加最新的待办事件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;#title&apos;).keydown(function (event) &#123; //回车键按下事件,添加最新事件</span><br><span class="line">    if (event.keyCode===13) &#123;</span><br><span class="line">        var local = getData(); //获取本地数据保存至local数组中</span><br><span class="line">        local.push(&#123;title: $(this).val(), done: false&#125;); //把最新数据添加到local数组中</span><br><span class="line">        saveData(local); //把local数组数据通过saveData函数保存至本地</span><br><span class="line">        load(); //重新加载数据</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li>a标签删除功能点击事件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;ul,ol&apos;).on(&apos;click&apos;,&apos;a&apos;,function () &#123; //给a标签（删除）绑定一个点击事件</span><br><span class="line">    var  data=getData(); </span><br><span class="line">    var i =$(this).attr(&apos;id&apos;); //获取id</span><br><span class="line">    data.splice(i,1); //删除该数据</span><br><span class="line">    saveData(data); //保存数据</span><br><span class="line">    load(); //重新加载数据</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></li>
+<li>checkbox切换是否完成点击事件<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$(&apos;ol,ul&apos;).on(&apos;click&apos;,&apos;input&apos;,function () &#123; //给checkbox（切换是否完成）绑定一个点击事件</span><br><span class="line">    var data=getData(); //获取数据</span><br><span class="line">    var index=$(this).siblings(&apos;a&apos;).attr(&apos;id&apos;); //获取id</span><br><span class="line">    data[index].done=$(this).prop(&apos;checked&apos;); //让data数据中的checked值改为当前已修改的值</span><br><span class="line">    saveData(data); //保存数据</span><br><span class="line">    load(); //重新加载数据</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+
+            <div class="post-copyright">
+    <div class="content">
+        <p>最后更新： 2019年11月04日 20:38</p>
+        <p>原始链接： <a class="post-url" href="/2019/11/04/toDoList-JQuery/" title="toDoList-JQuery">http://yoursite.com/2019/11/04/toDoList-JQuery/</a></p>
+        <footer>
+            <a href="http://yoursite.com">
+                <img src="/images/logo.png" alt="John Doe">
+                John Doe
+            </a>
+        </footer>
+    </div>
+</div>
+
+      
+        
+            
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" target="_blank" rel="noopener">赏</a>
+</div>
+
+<div id="reward" class="post-modal reward-lay">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener" id="reward-close">×</a>
+    <span class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        请我吃糖~
+        <i class="icon icon-quote-right"></i>
+    </span>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            <img id="rewardCode" src="/images/wechat_code.jpg" alt="打赏二维码">
+        </div>
+        <div class="reward-select">
+            
+            <label class="reward-select-item checked" data-id="wechat" data-wechat="/images/wechat_code.jpg">
+                <img class="reward-select-item-wechat" src="/images/wechat.png" alt="微信">
+            </label>
+            
+            
+            <label class="reward-select-item" data-id="alipay" data-alipay="/images/alipay_code.jpg">
+                <img class="reward-select-item-alipay" src="/images/alipay.png" alt="支付宝">
+            </label>
+            
+        </div>
+    </div>
+</div>
+
+
+        
+    </div>
+    <footer class="article-footer">
+        
+        
+<div class="post-share">
+    <a href="javascript:;" target="_blank" rel="noopener" id="share-sub" class="post-share-fab">
+        <i class="fa fa-share-alt"></i>
+    </a>
+    <div class="post-share-list" id="share-list">
+        <ul class="share-icons">
+          <li>
+            <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://yoursite.com/2019/11/04/toDoList-JQuery/&title=《toDoList-JQuery》 — 帅祥的Blog&pic=http://yoursite.comimages/logo.png" data-title="微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+          <li>
+            <a class="weixin share-sns" id="wxFab" href="javascript:;" target="_blank" rel="noopener" data-title="微信">
+              <i class="fa fa-weixin"></i>
+            </a>
+          </li>
+          <li>
+            <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://yoursite.com/2019/11/04/toDoList-JQuery/&title=《toDoList-JQuery》 — 帅祥的Blog&source=" data-title="QQ">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+          <li>
+            <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://yoursite.com/2019/11/04/toDoList-JQuery/" data-title="Facebook">
+              <i class="fa fa-facebook"></i>
+            </a>
+          </li>
+          <li>
+            <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《toDoList-JQuery》 — 帅祥的Blog&url=http://yoursite.com/2019/11/04/toDoList-JQuery/&via=http://yoursite.com" data-title="Twitter">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+          <li>
+            <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://yoursite.com/2019/11/04/toDoList-JQuery/" data-title="Google+">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        </ul>
+     </div>
+</div>
+<div class="post-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;" target="_blank" rel="noopener" id="wxShare-close">×</a>
+    <p>扫一扫，分享到微信</p>
+    <img src="//api.qrserver.com/v1/create-qr-code/?data=http://yoursite.com/2019/11/04/toDoList-JQuery/" alt="微信分享二维码">
+</div>
+
+<div class="mask"></div>
+
+        
+        <ul class="article-footer-menu">
+            
+            
+        </ul>
+        
+    </footer>
+  </div>
+</article>
+
+
+    <aside class="post-toc-pos post-toc-top" id="post-toc">
+        <nav class="post-toc-wrap">
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基于jquery的tudolist———最简单的代办事件列表"><span class="post-toc-text">基于jquery的tudolist———最简单的代办事件列表</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#toDolist分析："><span class="post-toc-text">toDolist分析：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#主要函数："><span class="post-toc-text">主要函数：</span></a></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+
+<nav id="article-nav">
+  
+  
+    <a href="/2019/11/03/vue-scss/" id="article-nav-older" class="article-nav-link-wrap">
+      <span class="article-nav-title">vue使用lang=&#34;scss&#34;</span>
+      <i class="fa fa-hand-o-right" aria-hidden="true"></i>
+    </a>
+  
+</nav>
+
+
+
+    
+</section>
+        
+      </div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+      <p>
+        Powered by  <a href="http://hexo.io/" target="_blank">Hexo</a>
+        Theme <a href="//github.com/wongminho/hexo-theme-miho" target="_blank">MiHo</a>
+      &copy; 2019 John Doe<br>
+      </p>
+    </div>
+  </div>
+</footer>
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script src="//cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  var mihoConfig = {
+      root: "http://yoursite.com",
+      animate: true,
+      isHome: false,
+      share: true,
+      reward: 1
+  }
+</script>
+<div class="sidebar">
+    <div id="sidebar-search" title="Search">
+        <i class="fa fa-search"></i>
+    </div>
+    <div id="sidebar-category" title="Categories">
+        <i class="fa fa-book"></i>
+    </div>
+    <div id="sidebar-tag" title="Tags">
+        <i class="fa fa-tags"></i>
+    </div>
+    <div id="sidebar-top">
+        <span class="sidebar-top-icon"><i class="fa fa-angle-up"></i></span>
+    </div>
+</div>
+<div class="sidebar-menu-box" id="sidebar-menu-box">
+    <div class="sidebar-menu-box-container">
+        <div id="sidebar-menu-box-categories">
+            
+        </div>
+        <div id="sidebar-menu-box-tags">
+            
+        </div>
+    </div>
+    <a href="javascript:;" target="_blank" rel="noopener" class="sidebar-menu-box-close">&times;</a>
+</div>
+<div class="mobile-header-menu-nav" id="mobile-header-menu-nav">
+    <div class="mobile-header-menu-container">
+        <span class="title">Menus</span>
+        <ul class="mobile-header-menu-navbar">
+            
+            <li>
+                <a  href="/">
+                    <i class="fa fa-home"></i><span>Home</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/archives">
+                    <i class="fa fa-archive"></i><span>Archives</span>
+                </a>
+            </li>
+            
+            <li>
+                <a  href="/about">
+                    <i class="fa fa-user"></i><span>About</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    <div class="mobile-header-tag-container">
+        <span class="title">Tags</span>
+        <div id="mobile-header-container-tags">
+            
+        </div>
+    </div>
+</div>
+<div class="search-wrap">
+    <span class="search-close">&times;</span>
+        <a href="javascript:;" target="_blank" rel="noopener" class="header-icon waves-effect waves-circle waves-light" id="back">
+            <i class="icon icon-lg icon-chevron-left"></i>
+        </a>
+        <input class="search-field" placeholder="Search..." id="keywords">
+        <a id="search-submit" href="javascript:;" target="_blank" rel="noopener">
+            <i class="fa fa-search"></i>
+        </a>
+    <div class="search-container" id="search-container">
+        <ul class="search-result" id="search-result">
+        </ul>
+    </div>
+</div>
+
+<div id="search-tpl">
+    <li class="search-result-item">
+        <a href="{url}" class="search-item-li">
+            <span class="search-item-li-title" title="{title}">{title}</span>
+        </a>
+    </li>
+</div>
+<script src="/js/search.js"></script>
+<script src="/js/main.js"></script>
+
+
+  <script src="//cdn.bootcss.com/particles.js/2.0.0/particles.min.js"></script>
+  <div id="particles"></div>
+  <script src="/js/particles.js"></script>
+
+
+
+
+
+
+
+  <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  <script src="//cdn.bootcss.com/scrollReveal.js/3.0.5/scrollreveal.js"></script>
+  <script src="/js/animate.js"></script>
+
+
+  <script src="/js/pop-img.js"></script>
+  <script>
+     $(".article-entry p img").popImg();
+  </script>
+
+  </div>
+</body>
+</html>
