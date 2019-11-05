@@ -8,15 +8,15 @@
   
     <meta name="keywords" content="FuXiang,FuXiang's Blog,fuxiang" />
   
-  <meta name="description" content="基于jquery的tuDoList———最简单的代办事件列表toDoList分析： 做到刷新页面不会丢失数据，因此我们的数据需要保存至本地localstorage里； 每次修改数据都要先从本地拿到数据，再把最新的数据渲染到页面上； 修改后再把最新的数据保存至localstorage，这样保证本地存储的是最新的数据； 存储的数据格式：var todolist = [{title: ‘晚上看电影。’,">
+  <meta name="description" content="基于jquery的tuDoList———最简单的代办事件列表toDoList分析： 做到刷新页面不会丢失数据，因此我们的数据需要保存至本地localstorage里。  每次修改数据都要先从本地拿到数据，再把最新的数据渲染到页面上。  修改后再把最新的数据保存至localstorage，这样保证本地存储的是最新的数据。  存储的数据格式：var todolist = [{title: ‘晚上看电影">
 <meta property="og:type" content="article">
 <meta property="og:title" content="toDoList-JQuery">
 <meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;04&#x2F;toDoList-JQuery&#x2F;index.html">
 <meta property="og:site_name" content="帅祥的Blog">
-<meta property="og:description" content="基于jquery的tuDoList———最简单的代办事件列表toDoList分析： 做到刷新页面不会丢失数据，因此我们的数据需要保存至本地localstorage里； 每次修改数据都要先从本地拿到数据，再把最新的数据渲染到页面上； 修改后再把最新的数据保存至localstorage，这样保证本地存储的是最新的数据； 存储的数据格式：var todolist = [{title: ‘晚上看电影。’,">
+<meta property="og:description" content="基于jquery的tuDoList———最简单的代办事件列表toDoList分析： 做到刷新页面不会丢失数据，因此我们的数据需要保存至本地localstorage里。  每次修改数据都要先从本地拿到数据，再把最新的数据渲染到页面上。  修改后再把最新的数据保存至localstorage，这样保证本地存储的是最新的数据。  存储的数据格式：var todolist = [{title: ‘晚上看电影">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;04&#x2F;toDoList-JQuery&#x2F;todolist.png">
-<meta property="og:updated_time" content="2019-11-04T12:53:34.462Z">
+<meta property="og:updated_time" content="2019-11-05T08:06:37.761Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;04&#x2F;toDoList-JQuery&#x2F;todolist.png">
   
@@ -139,12 +139,18 @@
       
             
             <h1 id="基于jquery的tuDoList———最简单的代办事件列表"><a href="#基于jquery的tuDoList———最简单的代办事件列表" class="headerlink" title="基于jquery的tuDoList———最简单的代办事件列表"></a>基于jquery的tuDoList———最简单的代办事件列表</h1><h3 id="toDoList分析："><a href="#toDoList分析：" class="headerlink" title="toDoList分析："></a>toDoList分析：</h3><ol>
-<li>做到刷新页面不会丢失数据，因此我们的数据需要保存至本地localstorage里；</li>
-<li>每次修改数据都要先从本地拿到数据，再把最新的数据渲染到页面上；</li>
-<li>修改后再把最新的数据保存至localstorage，这样保证本地存储的是最新的数据；</li>
-<li>存储的数据格式：var todolist = [{title: ‘晚上看电影。’, done:false}]。 其中title为事件内容，done表示事件是否完成。</li>
-<li>注意一：本地存储localStorage里面只能存储字符串格式，因此需要把对象转换为字符串JSON。stringfy(data)。</li>
-<li>注意二：获取本地存储数据，需要把里面的字符串转换为对象格式JSON.parse()我们才能使用里面的数据。</li>
+<li><p>做到刷新页面不会丢失数据，因此我们的数据需要保存至本地localstorage里。</p>
+</li>
+<li><p>每次修改数据都要先从本地拿到数据，再把最新的数据渲染到页面上。</p>
+</li>
+<li><p>修改后再把最新的数据保存至localstorage，这样保证本地存储的是最新的数据。</p>
+</li>
+<li><p>存储的数据格式：var todolist = [{title: ‘晚上看电影。’, done:false}]。 其中title为事件内容，done表示事件是否完成。</p>
+</li>
+<li><p>注意一：本地存储localStorage里面只能存储字符串格式，因此需要把对象转换为字符串JSON.stringfy(data)。</p>
+</li>
+<li><p>注意二：获取本地存储数据，需要把里面的字符串转换为对象格式JSON.parse()我们才能使用里面的数据。</p>
+</li>
 </ol>
 <p>github网址: <a href="https://github.com/fu-x/ToDoList-JQuery" target="_blank" rel="noopener">toDoList-JQuery</a></p>
 <img src="/2019/11/04/toDoList-JQuery/todolist.png" class="" title="todolist-JQuery">
@@ -162,7 +168,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年11月04日 20:53</p>
+        <p>最后更新： 2019年11月05日 16:06</p>
         <p>原始链接： <a class="post-url" href="/2019/11/04/toDoList-JQuery/" title="toDoList-JQuery">http://yoursite.com/2019/11/04/toDoList-JQuery/</a></p>
         <footer>
             <a href="http://yoursite.com">
@@ -279,6 +285,16 @@
     
 
 <nav id="article-nav">
+  
+    <a href="/2019/11/05/toDoList-Vue/" id="article-nav-newer" class="article-nav-link-wrap">
+
+      <span class="article-nav-title">
+        <i class="fa fa-hand-o-left" aria-hidden="true"></i>
+        
+          toDoList-Vue
+        
+      </span>
+    </a>
   
   
     <a href="/2019/11/03/vue-scss/" id="article-nav-older" class="article-nav-link-wrap">
