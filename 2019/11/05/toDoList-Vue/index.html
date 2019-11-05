@@ -16,7 +16,7 @@
 <meta property="og:description" content="基于Vue的tudolist———最简单的代办事件列表Vue-toDolist分析： 做到刷新页面不会丢失数据，因此我们的数据需要保存至本地localstorage里。  每次加载页面都要先从本地获取一次数据保存至data数据中，通过vue数据绑定自动更新页面数据。  修改数据后再把最新的数据保存至localstorage，这样保证本地存储的是最新的数据。  存储的数据格式：var todolis">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;05&#x2F;toDoList-Vue&#x2F;todolist.png">
-<meta property="og:updated_time" content="2019-11-05T08:05:59.114Z">
+<meta property="og:updated_time" content="2019-11-05T08:08:48.941Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;11&#x2F;05&#x2F;toDoList-Vue&#x2F;todolist.png">
   
@@ -138,7 +138,7 @@
     <div class="article-entry post-content" itemprop="articleBody">
       
             
-            <h1 id="基于Vue的tudolist———最简单的代办事件列表"><a href="#基于Vue的tudolist———最简单的代办事件列表" class="headerlink" title="基于Vue的tudolist———最简单的代办事件列表"></a>基于Vue的tudolist———最简单的代办事件列表</h1><h2 id="Vue-toDolist分析："><a href="#Vue-toDolist分析：" class="headerlink" title="Vue-toDolist分析："></a>Vue-toDolist分析：</h2><ol>
+            <h1 id="基于Vue的tudolist———最简单的代办事件列表"><a href="#基于Vue的tudolist———最简单的代办事件列表" class="headerlink" title="基于Vue的tudolist———最简单的代办事件列表"></a>基于Vue的tudolist———最简单的代办事件列表</h1><h3 id="Vue-toDolist分析："><a href="#Vue-toDolist分析：" class="headerlink" title="Vue-toDolist分析："></a>Vue-toDolist分析：</h3><ol>
 <li><p>做到刷新页面不会丢失数据，因此我们的数据需要保存至本地localstorage里。</p>
 </li>
 <li><p>每次加载页面都要先从本地获取一次数据保存至data数据中，通过vue数据绑定自动更新页面数据。</p>
@@ -157,7 +157,7 @@
 <p>github网址: <a href="https://github.com/fu-x/ToDoList-Vue" target="_blank" rel="noopener">toDoList-Vue</a></p>
 <img src="/2019/11/05/toDoList-Vue/todolist.png" class="" title="todolist-JQuery">
 
-<h2 id="主要函数："><a href="#主要函数：" class="headerlink" title="主要函数："></a>主要函数：</h2><ol>
+<h3 id="主要函数："><a href="#主要函数：" class="headerlink" title="主要函数："></a>主要函数：</h3><ol>
 <li>getData():从本地获取数据，保存到data中的todolist数组<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">getData()&#123; //获取本地localStorage数据</span><br><span class="line">    var data = localStorage.getItem(&apos;todolistVue&apos;);</span><br><span class="line">    if(data !== null)&#123;</span><br><span class="line">      this.todolist =  JSON.parse(data);</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">      this.todolist = [];</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;,</span><br></pre></td></tr></table></figure></li>
 <li>saveData(data)：保存数据至本地中的todolistVue<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">function saveData(data) &#123; //保存数据至本地中的todolistVue</span><br><span class="line">    localStorage.setItem(&apos;todolist&apos;,JSON.stringify(data));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
 <li>count():获取数据，并统计事件总数函数(这个函数需要在页面加载完成后最先调用一次，把最新的数据加载出来)<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">count()&#123;  //获取数据，并统计事件总数函数</span><br><span class="line">  this.getData();</span><br><span class="line">  this.num1 = 0; //初始化未完成事件</span><br><span class="line">  this.num2 = 0; //初始化已完成时间</span><br><span class="line">  this.todolist.forEach(ele =&gt; &#123; //通过forEach循环遍历数据</span><br><span class="line">    if(!ele.done)&#123;</span><br><span class="line">      this.num1++;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">      this.num2++;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure></li>
@@ -170,7 +170,7 @@
 
             <div class="post-copyright">
     <div class="content">
-        <p>最后更新： 2019年11月05日 16:05</p>
+        <p>最后更新： 2019年11月05日 16:08</p>
         <p>原始链接： <a class="post-url" href="/2019/11/05/toDoList-Vue/" title="toDoList-Vue">http://yoursite.com/2019/11/05/toDoList-Vue/</a></p>
         <footer>
             <a href="http://yoursite.com">
@@ -281,7 +281,7 @@
 
     <aside class="post-toc-pos post-toc-top" id="post-toc">
         <nav class="post-toc-wrap">
-            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基于Vue的tudolist———最简单的代办事件列表"><span class="post-toc-text">基于Vue的tudolist———最简单的代办事件列表</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Vue-toDolist分析："><span class="post-toc-text">Vue-toDolist分析：</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#主要函数："><span class="post-toc-text">主要函数：</span></a></li></ol></li></ol>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-1"><a class="post-toc-link" href="#基于Vue的tudolist———最简单的代办事件列表"><span class="post-toc-text">基于Vue的tudolist———最简单的代办事件列表</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Vue-toDolist分析："><span class="post-toc-text">Vue-toDolist分析：</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#主要函数："><span class="post-toc-text">主要函数：</span></a></li></ol></li></ol></li></ol>
         </nav>
     </aside>
     
